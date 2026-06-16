@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stripe Payment API Demo</title>
+</head>
+<body>
+
+<h2>Stripe Payment</h2>
+
+<button onclick="createPayment()">
+    Create Payment Intent
+</button>
+
+<p id="result"></p>
+
+<script>
+async function createPayment() {
+
+    const response = await fetch(
+        "http://localhost:3000/create-payment-intent",
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }
+    );
+
+    const data = await response.json();
+
+    document.getElementById("result").innerHTML =
+        "Client Secret:<br>" +
+        data.clientSecret;
+}
+</script>
+
+</body>
+</html>
